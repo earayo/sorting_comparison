@@ -7,7 +7,7 @@ using namespace std;
 class Bubble: public Sorting {
 public:
   Bubble() {
-    className = const_cast<char*>(string("Bubble").c_str());
+    className = "Bubble";
   }
   vector<string> sort(vector<string> arrayString) {
     vector<string> newArray = arrayString;

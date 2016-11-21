@@ -11,7 +11,7 @@ class HeapSort: public Sorting {
   
 public:
   HeapSort() {
-    className = const_cast<char*>(string("Heap").c_str());
+    className = "Heap";
   }
   vector<string> sort(vector<string> arrayString) {
     vector<string> newArray = arrayString;
