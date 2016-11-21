@@ -9,12 +9,12 @@ using namespace std;
 
 int MAX_CHARS_PER_LINE = 255;
 
-vector<string> castFileToString() {
+vector<string> readFileToStringArray(string fileName) {
   vector<string> words;
-  long counter = 0;
   char str[MAX_CHARS_PER_LINE];
-  cout<<"Start Reading file and cast to String[]...\n";
-  FILE *rFile = fopen("palabras.es","r");
+  char *fName = const_cast<char*>(fileName.c_str());
+  printf("Start Reading file and cast to String \"%s\" \n", fName);
+  FILE *rFile = fopen(fName,"r");
   while (fgets(str, MAX_CHARS_PER_LINE, rFile) != NULL) {
     string word = string(str);
     int found =  word.find("\n");
@@ -24,17 +24,20 @@ vector<string> castFileToString() {
     words.push_back(word);
   }
   fclose(rFile);
-  cout<<"Finish Reading file and cast to String[]...\n";
+  printf("Finish Reading \"%s\" and cast to String[%d] \n", fName, (int) words.size());
   return words;
 }
 
 void arrayStringToFile(vector<string> arrayString, string fileName) {
   char* aux;
   int max_array = arrayString.size();
-  FILE *wFile = fopen(fileName.c_str(),"w");
+  char *fName = const_cast<char*>(fileName.c_str());
+  printf("Creating file \"%s\" \n", fName);
+  FILE *wFile = fopen(fName,"w");
   for (int i=0; i < max_array; i++) {
     aux = strdup(arrayString[i].c_str());
     fprintf(wFile,"%s\n",aux); 
   }
+  printf("Finish file \"%s\" \n", fName);
   fclose(wFile); 
 }
