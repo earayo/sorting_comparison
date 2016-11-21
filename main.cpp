@@ -8,6 +8,7 @@
 #include "HandlerFile.cpp"
 #include "Sorting.h"
 #include "BubbleSort.cpp"
+#include "HeapSort.cpp"
 
 using namespace std;
 
@@ -39,8 +40,11 @@ vector<string> sort(Sorting& sorting, vector<string> stringArray) {
 int main() {
   MAX_CHARS_PER_LINE = 30;
   vector<string> words = readFileToStringArray("palabras.es");
-  Bubble bubble;
   vector<string> wordsToSort = take(words, 20000);
+  Bubble bubble;
   vector<string> wordsBubble = sort(bubble, wordsToSort);
   arrayStringToFile(wordsBubble, "wordBubble.txt");
+  HeapSort heapSort;
+  vector<string> wordsHeap = sort(heapSort, wordsToSort);
+  arrayStringToFile(wordsHeap, "wordHeap.txt");
 }

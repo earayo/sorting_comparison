@@ -7,5 +7,10 @@ using namespace std;
 class Sorting {
  public:
   char* className;
-  virtual vector<string> sort(vector<string> arrayString) const = 0;
+  virtual vector<string> sort(vector<string> arrayString) = 0;
+  void swap(vector<string> &arrayString, int from, int to) {
+    string swapS = arrayString[from];
+    arrayString[from] = arrayString[to];
+    arrayString[to] = swapS;
+  };
 };
