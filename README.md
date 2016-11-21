@@ -15,3 +15,4 @@ It needs the folllowing in a Linux environment:
 $ g++ main.cpp # compile
 $ ./a.out # Run
 ```
+You can see a result's example for [Bubble method](./Result_Bubble.md) and [Heap method](./Result_Heap.md)

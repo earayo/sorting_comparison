@@ -35,18 +35,25 @@ vector<string> sort(Sorting& sorting, vector<string> stringArray) {
   return sortingArray;
 }
 
+void sortAndCreateFiles(Sorting& sorting, vector<string> stringArray, int i) {
+  vector<string> arrayToSort = take(stringArray, i);
+  vector<string> arraySorted = sort(sorting, arrayToSort);
+  char *fileName = const_cast<char*>(string("").c_str());
+  sprintf(fileName, "%s_%d.txt", sorting.className.c_str(), i);
+  arrayStringToFile(arraySorted, fileName);
+}
 /*
 Create files by every 10000 elements using any sorting method.
  */
 void createFileBySortMethod(Sorting& sorting, vector<string> stringArray) {
   int sizeArray = stringArray.size();
+  int i=10000;
   printf("Start Method implemented: %s.\n", sorting.className.c_str());
-  for(int i=10000; i < sizeArray; i+=10000) {
-    vector<string> arrayToSort = take(stringArray, i);
-    vector<string> arraySorted = sort(sorting, arrayToSort);
-    char *fileName = const_cast<char*>(string("").c_str());
-    sprintf(fileName, "%s_%d.txt", sorting.className.c_str(), i);
-    arrayStringToFile(arraySorted, fileName);
+  for(i=10000; i < sizeArray; i+=10000) {
+    sortAndCreateFiles(sorting, stringArray, i);
+  }
+  if ((i - sizeArray) > 0) {
+    sortAndCreateFiles(sorting, stringArray, sizeArray);
   }
   printf("Finish Method implemented: %s.\n", sorting.className.c_str());
 }
@@ -56,4 +63,6 @@ int main() {
   vector<string> words = readFileToStringArray("palabras.es");
   Bubble bubble;
   createFileBySortMethod(bubble, words);
+  HeapSort heapSort;
+  createFileBySortMethod(heapSort, words);
 }

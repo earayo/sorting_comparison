@@ -16,7 +16,8 @@ public:
     int limitJ, next;
     string swap;
     for(int i=0; i < limitI; i++) {
-      for(int j=0; j < limitI; j++) {
+      limitJ = limitI - i;
+      for(int j=0; j < limitJ; j++) {
 	next = j + 1;
 	if(newArray[j].compare(newArray[next]) > 0) {
 	  this->swap(newArray, j, next);
