@@ -12,11 +12,14 @@ public:
   vector<string> sort(vector<string> arrayString) {
     vector<string> newArray = arrayString;
     int sizeArray = newArray.size();
+    int limitI = sizeArray - 1;
+    int limitJ, next;
     string swap;
-    for(int i=0; i < sizeArray - 1; i++) {
-      for(int j=0; j < sizeArray -  (i + 1); j++) {
-	if(newArray[j].compare(newArray[j+1]) > 0) {
-	  this->swap(newArray, j, j+1);
+    for(int i=0; i < limitI; i++) {
+      for(int j=0; j < limitI; j++) {
+	next = j + 1;
+	if(newArray[j].compare(newArray[next]) > 0) {
+	  this->swap(newArray, j, next);
 	}
       }
     }
